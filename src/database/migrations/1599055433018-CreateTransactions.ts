@@ -42,7 +42,7 @@ export default class CreateTransaction1599013654076
           {
             name: 'category',
             columnNames: ['category_id'],
-            referencedTableName: 'category',
+            referencedTableName: 'categories',
             referencedColumnNames: ['id'],
             onUpdate: 'CASCADE',
             onDelete: 'SET NULL',
