@@ -19,7 +19,7 @@ class Transaction {
   @Column()
   type: 'income' | 'outcome';
 
-  @Column({ type: 'money' })
+  @Column({ type: 'decimal' })
   value: number;
 
   @Column({ type: 'uuid' })

@@ -16,20 +16,20 @@ class TransactionsRepository extends Repository<Transaction> {
       (accumulator, currentTransaction) => {
         if (currentTransaction.type === 'income') {
           return {
-            income: accumulator.income + currentTransaction.value,
+            income: accumulator.income + Number(currentTransaction.value),
             outcome: accumulator.outcome,
             total:
               accumulator.income +
-              currentTransaction.value -
+              Number(currentTransaction.value) -
               accumulator.outcome,
           };
         }
         return {
           income: accumulator.income,
-          outcome: accumulator.outcome + currentTransaction.value,
+          outcome: accumulator.outcome + Number(currentTransaction.value),
           total:
             accumulator.income -
-            (accumulator.outcome + currentTransaction.value),
+            (accumulator.outcome + Number(currentTransaction.value)),
         };
       },
       { income: 0, outcome: 0, total: 0 },

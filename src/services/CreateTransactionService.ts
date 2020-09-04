@@ -22,9 +22,9 @@ class CreateTransactionService {
     const transactionsRepository = getCustomRepository(TransactionsRepository);
     const categoriesRepository = getRepository(Category);
 
-    const balance = await transactionsRepository.getBalance();
+    const { total } = await transactionsRepository.getBalance();
 
-    if (type === 'outcome' && balance.total < value) {
+    if (type === 'outcome' && total < value) {
       throw new AppError('Could not complete operation, insufficient funds');
     }
 
@@ -40,7 +40,7 @@ class CreateTransactionService {
       await categoriesRepository.save(newCategory);
 
       const transaction = transactionsRepository.create({
-        category_id: newCategory.id,
+        category: newCategory,
         title,
         type,
         value,
@@ -52,7 +52,7 @@ class CreateTransactionService {
     }
 
     const transaction = transactionsRepository.create({
-      category_id: foundCategory.id,
+      category: foundCategory,
       title,
       type,
       value,

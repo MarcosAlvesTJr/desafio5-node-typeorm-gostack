@@ -19,8 +19,14 @@ export default class CreateTransaction1599013654076
             type: 'varchar',
           },
           {
+            name: 'type',
+            type: 'varchar',
+          },
+          {
             name: 'value',
-            type: 'money',
+            type: 'decimal',
+            precision: 10,
+            scale: 2,
           },
           {
             name: 'category_id',
@@ -36,16 +42,6 @@ export default class CreateTransaction1599013654076
             name: 'updated_at',
             type: 'timestamp',
             default: 'now()',
-          },
-        ],
-        foreignKeys: [
-          {
-            name: 'category',
-            columnNames: ['category_id'],
-            referencedTableName: 'categories',
-            referencedColumnNames: ['id'],
-            onUpdate: 'CASCADE',
-            onDelete: 'SET NULL',
           },
         ],
       }),
